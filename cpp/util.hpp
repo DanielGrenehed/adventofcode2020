@@ -13,9 +13,7 @@ std::vector<int> readIntPerLine(std::string filename) {
     std::vector<int> output;
     std::ifstream f(filename);
     if (f.is_open()) {
-        while (getline(f, line)) {
-            output.push_back(std::stoi(line));
-        }
+        while (getline(f, line)) output.push_back(std::stoi(line));
         f.close();
     }
     return output;
@@ -26,9 +24,7 @@ std::vector<std::string> readLines(std::string filename) {
     std::vector<std::string> output;
     std::ifstream f(filename);
     if (f.is_open()) {
-        while (getline(f, line)) {
-            output.push_back(line);
-        }
+        while (getline(f, line)) output.push_back(line);
         f.close();
     }
     return output;
@@ -95,19 +91,18 @@ int isHexValid(std::string input) {
     return 1;
 }
 
+
+int isDigit(char c) {
+    char digits[10]= {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    for (int i = 0; i < 10; i++) if (c == digits[i]) return 1;
+    return 0;
+}
+
 int numDigits(std::string input) {
-    char hex[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     int num = 0;
     for (int i = 0; i < input.size(); i++) {
-        int found = 0;
-        for (int j = 0; j < 10; j++)  {
-            if (input[i] == hex[j]) {
-                found++;
-                num++;
-            }
-        }
-
-        if (!found) return 0;
+        if (isDigit(input[i])) num++;
+        else return 0;
     }
     return num;
 }

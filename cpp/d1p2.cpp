@@ -22,16 +22,16 @@ int getPosOfNumber(std::vector<int> input, int start_pos, int max_value) {
 }
 
 int multiplyForSumN(std::vector<int> input, int n) {
-    int i = 0, j, k, size = input.size();
-    for (; i < size; i++) {
+    int size = input.size();
+    for (int i = 0; i < size; i++) {
         int first = input[i];
 
-        for ( j= i + 1; j < size; j++) {
+        for (int  j= i + 1; j < size; j++) {
             int second_pos = getPosOfNumber(input, j, n-first);
             if (second_pos == -1) continue;
             int second = input[second_pos];
 
-            for (k = second_pos + 1; k < size; k++) {
+            for (int k = second_pos + 1; k < size; k++) {
                 int third_pos = getPosOfNumber(input, k, n-(first+second));
                 if (third_pos == -1) continue;
                 int third = input[third_pos];
@@ -44,7 +44,7 @@ int multiplyForSumN(std::vector<int> input, int n) {
                 }
             }
 
-            j= second_pos;
+            j = second_pos;
         }
     }
     std::cout << "No answer found." << std::endl;

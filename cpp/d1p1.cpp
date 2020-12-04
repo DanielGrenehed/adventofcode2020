@@ -6,10 +6,10 @@
 
 
 int multiplyForSumN(std::vector<int> input, int n) {
-    int i = 0, j, k, size = input.size();
-    for (; i < size; i++) {
+    int size = input.size();
+    for (int i = 0; i < size; i++) {
         int first = input[i];
-        for (j=i+1; j < size; j++) {
+        for (int j=i+1; j < size; j++) {
             int second = input[j];
             if (first + second == n) {
                 std::cout << first << " and " << second << " sum to " << n << std::endl;
