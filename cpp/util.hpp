@@ -34,7 +34,33 @@ std::vector<std::string> readLines(std::string filename) {
     return output;
 }
 
-std::vector<std::string> split(std::string line, char delim) {
+std::vector<std::string> getLineSeperatedSequences(std::string filename) {
+
+    std::string line;
+    std::vector<std::string> output;
+    std::ifstream f(filename);
+    if (f.is_open()) {
+        std::string sequence = "";
+        while (getline(f, line)) {
+
+            if (line.size() == 0 && sequence.size() > 0) {
+                output.push_back(sequence);
+                sequence = "";
+            } else {
+                sequence.append(" "+line);
+            }
+
+        }
+        if (sequence.size() != 0) {
+            output.push_back(sequence);
+        }
+
+        f.close();
+    }
+    return output;
+}
+
+std::vector<std::string> split(std::string line, char delim) { // probably not safe for double space (or more)
         std::vector<std::string> output;
         int last_cut = 0, size = line.size();
         for (int i = 0; i < size; i++) {
@@ -56,6 +82,42 @@ void print_vector(std::vector<std::string> vec) {
             std::cout << " '" << vec[i] << "' ";
         }
         std::cout << std::endl;
+}
+
+
+int isHexValid(std::string input) {
+    char hex[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    for (int i = 0; i < input.size(); i++) {
+        int found = 0;
+        for (int j = 0; j < 16; j++) if (input[i] == hex[j]) found++;
+        if (!found) return 0;
+    }
+    return 1;
+}
+
+int numDigits(std::string input) {
+    char hex[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    int num = 0;
+    for (int i = 0; i < input.size(); i++) {
+        int found = 0;
+        for (int j = 0; j < 10; j++)  {
+            if (input[i] == hex[j]) {
+                found++;
+                num++;
+            }
+        }
+
+        if (!found) return 0;
+    }
+    return num;
+}
+
+int isWithin(int i, int min, int max) {
+    if (i >= min && i <= max) {
+        std::cout << i << " is greater than " << min << " and smaller than " << max << std::endl;
+        return 1;
+     }
+    return 0;
 }
 
 #endif
