@@ -31,7 +31,6 @@ std::vector<std::string> readLines(std::string filename) {
 }
 
 std::vector<std::string> getLineSeperatedSequences(std::string filename) {
-
     std::string line;
     std::vector<std::string> output;
     std::ifstream f(filename);
