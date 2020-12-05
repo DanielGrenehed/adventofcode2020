@@ -72,14 +72,6 @@ std::vector<std::string> split(std::string line, char delim) { // probably not s
 }
 
 
-void print_vector(std::vector<std::string> vec) {
-        for (int i = 0; i < vec.size(); i++) {
-            std::cout << " '" << vec[i] << "' ";
-        }
-        std::cout << std::endl;
-}
-
-
 int isHexValid(std::string input) {
     char hex[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
     for (int i = 0; i < input.size(); i++) {
@@ -113,5 +105,19 @@ int isWithin(int i, int min, int max) {
      }
     return 0;
 }
+
+/// debug 
+
+void print_vector(std::vector<std::string> vec) {
+        for (int i = 0; i < vec.size(); i++) {
+            std::cout << " '" << vec[i] << "' ";
+        }
+        std::cout << std::endl;
+}
+
+void print_boolarr(bool *arr, int size) {
+    for (int i = 0; i < size; i++) std::cout << " " << arr[i];
+}
+
 
 #endif

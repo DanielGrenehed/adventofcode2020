@@ -22,20 +22,13 @@ int getId(std::string line) {
     return binToDec(replaceToBin(line));
 }
 
-void print_boolarr(bool *arr, int size) {
-    for (int i = 0; i < size; i++) std::cout << " " << arr[i];
-}
 
 int getIdOfSeat(std::vector<std::string> input) {
-    // populate array
-    // find element that is not added
-
-    // get position of seats instead
     const int num_seats = 127*8;
     bool seats[num_seats] = {0};
     for (int i = 0; i < input.size(); i++) seats[getId(input[i])] = 1;
 
-    print_boolarr(seats, num_seats);
+    //print_boolarr(seats, num_seats);
     bool prev = 0;
     for (int i = 0; i < num_seats; i++) {
         if (seats[i] == 0) {
