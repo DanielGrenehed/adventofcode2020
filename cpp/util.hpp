@@ -30,7 +30,7 @@ std::vector<std::string> readLines(std::string filename) {
     return output;
 }
 
-std::vector<std::string> getLineSeperatedSequences(std::string filename) {
+std::vector<std::string> getLineSeperatedSequences(std::string filename, bool spaced) {
     std::string line;
     std::vector<std::string> output;
     std::ifstream f(filename);
@@ -42,7 +42,7 @@ std::vector<std::string> getLineSeperatedSequences(std::string filename) {
                 output.push_back(sequence);
                 sequence = "";
             } else {
-                sequence.append(" "+line);
+                sequence.append(spaced ? (" "+line) : line);
             }
 
         }
@@ -59,8 +59,8 @@ std::vector<std::string> split(std::string line, char delim) { // probably not s
         std::vector<std::string> output;
         int last_cut = 0, size = line.size();
         for (int i = 0; i < size; i++) {
-            if (line[i] == delim && last_cut <= i) {
-                output.push_back(line.substr(last_cut, i-last_cut));
+            if (line[i] == delim) {
+                if (last_cut < i) output.push_back(line.substr(last_cut, i-last_cut));
                 last_cut = i+1;
             }
         }
@@ -71,6 +71,23 @@ std::vector<std::string> split(std::string line, char delim) { // probably not s
         return output;
 }
 
+
+bool contains(std::vector<char> vec, char c) {
+    for (int i = 0;  i < vec.size(); i++) if (vec[i] == c) return 1;
+    return 0;
+}
+
+std::vector<char> getCommonChars(std::vector<char> in1, std::vector<char> in2) {
+    std::vector<char> output;
+    for (int i = 0; i < in1.size(); i++) if (contains(in2, in1[i])) output.push_back(in1[i]);
+    return output;
+}
+
+std::vector<char> charVectorFromString(std::string line) {
+    std::vector<char> output;
+    for (int i = 0; i < line.size(); i++) output.push_back(line[i]);
+    return output;
+}
 
 int isHexValid(std::string input) {
     char hex[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
@@ -106,7 +123,7 @@ int isWithin(int i, int min, int max) {
     return 0;
 }
 
-/// debug 
+/// debug
 
 void print_vector(std::vector<std::string> vec) {
         for (int i = 0; i < vec.size(); i++) {

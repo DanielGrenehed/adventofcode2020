@@ -55,6 +55,6 @@ int countValid(std::vector<std::string> input) {
 }
 
 int main() {
-    int count = countValid(getLineSeperatedSequences("../input_d4"));
+    int count = countValid(getLineSeperatedSequences("../input_d4", 1));
     std::cout << "Counted " << count << " valid inputs";
 }
