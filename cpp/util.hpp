@@ -7,6 +7,7 @@
 #include <vector>
 // vecotr reserve num.lines in  file
 
+// readfile
 
 std::vector<int> readIntPerLine(std::string filename) {
     std::string line;
@@ -55,20 +56,42 @@ std::vector<std::string> getLineSeperatedSequences(std::string filename, bool sp
     return output;
 }
 
-std::vector<std::string> split(std::string line, char delim) { // probably not safe for double space (or more)
-        std::vector<std::string> output;
-        int last_cut = 0, size = line.size();
-        for (int i = 0; i < size; i++) {
-            if (line[i] == delim) {
-                if (last_cut < i) output.push_back(line.substr(last_cut, i-last_cut));
-                last_cut = i+1;
-            }
-        }
+// conversion
 
-        if (last_cut != size) {
-            output.push_back(line.substr(last_cut, size-last_cut));
+std::vector<std::string> split(std::string line, char delim) { // probably not safe for double space (or more)
+    std::vector<std::string> output;
+    int last_cut = 0, size = line.size();
+    for (int i = 0; i < size; i++) {
+        if (line[i] == delim) {
+            if (last_cut < i) output.push_back(line.substr(last_cut, i-last_cut));
+            last_cut = i+1;
         }
-        return output;
+    }
+
+    if (last_cut != size) {
+        output.push_back(line.substr(last_cut, size-last_cut));
+    }
+    return output;
+}
+
+
+int find(std::string word, std::string line) {
+    for (int i = 0; i < line.size(); i++) {
+        if (line.substr(i, word.size()) == word) return i;
+    }
+    return -1;
+}
+
+std::vector<std::string> splitOnce(std::string line, std::string word) {
+    std::vector<std::string> output;
+    int pos = find(word, line);
+    if (pos == -1) output.push_back(line);
+    else if (pos == 0) output.push_back(line.substr(word.size()));
+    else {
+        output.push_back(line.substr(0, pos));
+        output.push_back(line.substr(pos+word.size()));
+    }
+    return output;
 }
 
 
