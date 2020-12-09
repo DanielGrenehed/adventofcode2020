@@ -1,4 +1,4 @@
-// Author Daniel Grenehed 07 12 2020
+// Author Daniel Grenehed 08 12 2020
  #include "util.hpp"
 
 class Rule {
