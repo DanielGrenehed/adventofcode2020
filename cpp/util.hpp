@@ -20,6 +20,17 @@ std::vector<int> readIntPerLine(std::string filename) {
     return output;
 }
 
+std::vector<long long> readLLongPerLine(std::string filename) {
+    std::string line;
+    std::vector<long long> output;
+    std::ifstream f(filename);
+    if (f.is_open()) {
+        while (getline(f, line)) output.push_back(std::stoll(line));
+        f.close();
+    }
+    return output;
+}
+
 std::vector<std::string> readLines(std::string filename) {
     std::string line;
     std::vector<std::string> output;
