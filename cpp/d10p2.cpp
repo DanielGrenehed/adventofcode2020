@@ -3,9 +3,6 @@
 
 #include "util.hpp"
 
-
-// get number of different ways to connect the adaptors
-
 long countWays(std::vector<int> adaptors) {
     quicksort(adaptors);
     std::vector<long> ways;
