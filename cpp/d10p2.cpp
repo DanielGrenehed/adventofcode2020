@@ -1,4 +1,6 @@
 // Author Daniel Grenehed 10 12 2020
+// inspired by reddit
+
 #include "util.hpp"
 
 
