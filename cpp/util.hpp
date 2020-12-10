@@ -85,6 +85,36 @@ std::vector<std::string> split(std::string line, char delim) { // probably not s
     return output;
 }
 
+void swap(std::vector<int> &vec, int a, int b) {
+    int temp = vec[a];
+    vec[a] = vec[b];
+    vec[b] = temp;
+}
+
+int partition(std::vector<int> &vec, int low, int high) {
+    int pivot = vec[high];
+    int i = (low-1);
+    for (int j = low; j <= high-1; j++) {
+        if (vec[j] < pivot) {
+            i++;
+            swap(vec, i, j);
+        }
+    }
+    swap(vec, i+1, high);
+    return (i+1);
+}
+
+void quicksort(std::vector<int> &vec, int low, int high) {
+    if (low < high) {
+        int pi = partition(vec, low, high);
+        quicksort(vec, low, pi-1);
+        quicksort(vec, pi+1, high);
+    }
+}
+
+void quicksort(std::vector<int> &vec) {
+    quicksort(vec, 0, vec.size()-1);
+}
 
 int find(std::string word, std::string line) {
     for (int i = 0; i < line.size(); i++) {
