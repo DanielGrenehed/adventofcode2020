@@ -21,7 +21,7 @@ public:
         else if (rotation == 180 || rotation == -180) x -= steps;
         else if (rotation == 90 || rotation == -270) y += steps;
         else if (rotation == 270 || rotation == -90) y -= steps;
-        else std::cout << "got " << rotation << " degrees..." << std::endl;
+
     }
 
     void MoveEast(int steps) { x += steps; }
