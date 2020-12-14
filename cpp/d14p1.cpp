@@ -82,10 +82,3 @@ int main() {
     std::uint64_t sum = sumMemory(mem);
     std::cout << "Sum of memory after doing all operations is " << sum << std::endl;
 }
-
-
-// not 3497 (too low)   564494924505
-//                      321535994884
-//                      18446744038763260932
-//                      18446743830750624473
-//                      13496669152158
