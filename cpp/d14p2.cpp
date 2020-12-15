@@ -3,7 +3,7 @@
 #include <math.h>
 
 // unsigned 8byte int to string of binary sequence
-std::string ulltos(std::uint64_t number) {
+std::string ulltobs(std::uint64_t number) {
     std::string bin = "";
     for (int i = 35; i >= 0; i--) {
         std::uint64_t value = pow(2, i);
@@ -25,7 +25,7 @@ std::uint64_t bstoull(std::string bin) {
 }
 
 std::string getMaskedAdress(std::uint64_t adress, std::string mask) {
-    std::string m_adress = ulltos(adress);
+    std::string m_adress = ulltobs(adress);
     for (int i = 0; i < mask.size(); i++) {
         if (mask[i] != '0') m_adress[i] = mask[i];
     }
