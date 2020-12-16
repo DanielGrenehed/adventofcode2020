@@ -7,65 +7,6 @@
 #include <vector>
 // vecotr reserve num.lines in  file
 
-// readfile
-
-std::vector<int> readIntPerLine(std::string filename) {
-    std::string line;
-    std::vector<int> output;
-    std::ifstream f(filename);
-    if (f.is_open()) {
-        while (getline(f, line)) output.push_back(std::stoi(line));
-        f.close();
-    }
-    return output;
-}
-
-std::vector<long long> readLLongPerLine(std::string filename) {
-    std::string line;
-    std::vector<long long> output;
-    std::ifstream f(filename);
-    if (f.is_open()) {
-        while (getline(f, line)) output.push_back(std::stoll(line));
-        f.close();
-    }
-    return output;
-}
-
-std::vector<std::string> readLines(std::string filename) {
-    std::string line;
-    std::vector<std::string> output;
-    std::ifstream f(filename);
-    if (f.is_open()) {
-        while (getline(f, line)) output.push_back(line);
-        f.close();
-    }
-    return output;
-}
-
-std::vector<std::string> getLineSeperatedSequences(std::string filename, bool spaced) {
-    std::string line;
-    std::vector<std::string> output;
-    std::ifstream f(filename);
-    if (f.is_open()) {
-        std::string sequence = "";
-        while (getline(f, line)) {
-
-            if (line.size() == 0 && sequence.size() > 0) {
-                output.push_back(sequence);
-                sequence = "";
-            } else {
-                sequence.append(spaced ? (" "+line) : line);
-            }
-
-        }
-        if (sequence.size() != 0) {
-            output.push_back(sequence);
-        }
-
-        f.close();
-    }
-    return output;
-}
 
 // conversion
 
@@ -198,6 +139,81 @@ void print_vector(std::vector<std::string> vec) {
 
 void print_boolarr(bool *arr, int size) {
     for (int i = 0; i < size; i++) std::cout << " " << arr[i];
+}
+
+
+// readfile
+
+std::vector<int> readIntPerLine(std::string filename) {
+    std::string line;
+    std::vector<int> output;
+    std::ifstream f(filename);
+    if (f.is_open()) {
+        while (getline(f, line)) output.push_back(std::stoi(line));
+        f.close();
+    }
+    return output;
+}
+
+std::vector<long long> readLLongPerLine(std::string filename) {
+    std::string line;
+    std::vector<long long> output;
+    std::ifstream f(filename);
+    if (f.is_open()) {
+        while (getline(f, line)) output.push_back(std::stoll(line));
+        f.close();
+    }
+    return output;
+}
+
+std::vector<std::string> readLines(std::string filename) {
+    std::string line;
+    std::vector<std::string> output;
+    std::ifstream f(filename);
+    if (f.is_open()) {
+        while (getline(f, line)) output.push_back(line);
+        f.close();
+    }
+    return output;
+}
+
+std::vector<int> readCommaSeperatedInts(std::string filename) {
+    std::vector<int> numbers;
+    std::string line;
+    std::ifstream f(filename);
+    if (f.is_open()) {
+        while (getline(f, line)) {
+            std::vector<std::string> sep = split(line, ',');
+            for (int i = 0; i < sep.size(); i++) numbers.push_back(std::stoi(sep[i]));
+        }
+        f.close();
+    }
+    return numbers;
+}
+
+std::vector<std::string> getLineSeperatedSequences(std::string filename, bool spaced) {
+    std::string line;
+    std::vector<std::string> output;
+    std::ifstream f(filename);
+    if (f.is_open()) {
+        std::string sequence = "";
+        while (getline(f, line)) {
+
+            if (line.size() == 0 && sequence.size() > 0) {
+                output.push_back(sequence);
+                sequence = "";
+            } else {
+                sequence.append(spaced ? (" "+line) : line);
+            }
+
+        }
+        if (sequence.size() != 0) {
+            output.push_back(sequence);
+        }
+
+        f.close();
+    }
+    return output;
 }
 
 
