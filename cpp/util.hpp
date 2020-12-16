@@ -64,6 +64,13 @@ int find(std::string word, std::string line) {
     return -1;
 }
 
+int getLineIndex(std::vector<std::string> vec, std::string line) {
+    for (int i = 0; i < vec.size(); i++) {
+        if (vec[i].substr(0, line.size()) == line) return i;
+    }
+    return -1;
+}
+
 std::vector<std::string> splitOnce(std::string line, std::string word) {
     std::vector<std::string> output;
     int pos = find(word, line);
