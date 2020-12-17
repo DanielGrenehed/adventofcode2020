@@ -84,8 +84,4 @@ int main() {
     std::cout << "Ranges size is " << ranges.size() << std::endl;
     int sum = sumInvalidTicketData(ranges, input);
     std::cout << "got sum of " << sum << std::endl;
-    // read the field ranges and determine a min max value
-    // read tickets and sum values outside of range
 }
-
-// https://adventofcode.com/2020/day/16
